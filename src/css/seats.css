@@ -1,0 +1,105 @@
+.seats-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 150px;
+}
+
+.seats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 332px;
+}
+
+.seat {
+    background-color: #C3CFD9;
+    border-radius: 33px;
+    border: 1px solid #808F9D;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+}
+
+.legend-box {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 332px;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #4E5A65;
+    font-size: 13px;
+}
+
+.circle {
+    width: 25px;
+    height: 25px;
+    border-radius: 33px;
+    margin-bottom: 7px;
+    border: 1px solid #808F9D;
+}
+
+.green .circle {
+    background-color: #8DD7CF;
+}
+
+.gray .circle {
+    background-color: #C3CFD9;
+}
+
+.yellow .circle {
+    background-color: #FBE192;
+}
+
+.inputs-container {
+    width: 332px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    gap: 10px;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-explanation {
+    font-size: 18px;
+    line-height: 25px;
+}
+
+.input-box input {
+    height: 51px;
+    outline: none;
+    border: 1px solid #D5D5D5;
+    border-radius: 3px;
+    padding-left: 18px;
+    font-size: 18px;
+}
+
+.input-box input::placeholder {
+    color: #AFAFAF;
+    font-size: 18px;
+    font-style: italic;
+}
+
+.finish-button {
+    width: 225px;
+    height: 42px;
+    background-color: #E8833A;
+    border-radius: 3px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}

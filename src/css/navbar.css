@@ -1,0 +1,17 @@
+.navbar {
+    height: 67px;
+    width: 100%;
+    background-color: #C3CFD9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+}
+
+.navbar #cineflex {
+    color: #E8833A;
+    font-size: 34px;
+}
