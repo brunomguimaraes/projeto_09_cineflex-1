@@ -60,7 +60,7 @@ export default function SessionSeats () {
                         <input placeholder="Digite seu CPF..."></input>
                     </div>
                 </div>
-                <a class="finish-button">
+                <a class="finish-button" href="sdfas">
                     Reservar assento    
                 </a>
             </div>

@@ -7,13 +7,13 @@ import "./css/sessions.css";
 import "./css/bottombar.css";
 import "./css/navbar.css";
 import "./css/style.css";
+import "./css/loading.css";
 
 import {
-    BrowserRouter as Router,
+    BrowserRouter,
     Route,
     Switch
 } from "react-router-dom";
-import axios from 'axios';
 import NavBar from "./Components/NavBar";
 import MainPage from "./Components/MainPage";
 import MovieSessions from "./Components/MovieSessions";
@@ -25,7 +25,7 @@ export default function App () {
 
     return (
         <>
-            <Router>
+            <BrowserRouter>
                 <NavBar />
 
                 <Switch>
@@ -35,6 +35,7 @@ export default function App () {
                     
                     <Route exact path="/sessions">
                         <MovieSessions />
+                        <BottomBar/>
                     </Route>
 
                     <Route exact path="/seats">
@@ -46,7 +47,7 @@ export default function App () {
                         <RequestReview />
                     </Route>
                 </Switch>
-            </Router>
+            </BrowserRouter>
         </>
     );
 }
