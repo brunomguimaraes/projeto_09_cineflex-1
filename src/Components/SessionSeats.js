@@ -27,16 +27,22 @@ export default function SessionSeats () {
         )
     }
 
-    const selectSeat = (id) => {
+    const selectSeat = (i, isAvailable) => {
+
+        if (isAvailable === true) {
+            alert("Este assento não está disponível!");
+            return;
+        }
+
         const newSession = {...selectedSession};
 
-        if (newSession.seats[id - 1].clicked === true) {
-            delete newSession.seats[id - 1].clicked;
+        if (newSession.seats[i].clicked === true) {
+            delete newSession.seats[i].clicked;
             setSelectedSession(newSession);
             return;
         }
 
-        newSession.seats[id - 1].clicked = true;
+        newSession.seats[i].clicked = true;
         setSelectedSession(newSession);
     }
 
@@ -51,7 +57,7 @@ export default function SessionSeats () {
             <div className="seats-page-container">
                 <ul className="seats">
                     {selectedSession.seats.map(({id, name: number, isAvailable, clicked}, i) => 
-                        <li onClick={() => selectSeat(id)} className={`seat ${clicked === undefined ? (isAvailable === false ? ("gray") : ("yellow")) : ("green")}`} key={i}>
+                        <li onClick={() => selectSeat(i, isAvailable)} className={`seat ${clicked === undefined ? (isAvailable === false ? ("gray") : ("yellow")) : ("green")}`} key={i}>
                             {number >= 1 && number <= 9 ? (
                                 "0" + number
                             ) : (
