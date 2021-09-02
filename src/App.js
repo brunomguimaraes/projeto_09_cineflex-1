@@ -22,6 +22,10 @@ import RequestReview from "./Components/RequestReview";
 
 export default function App () {
 
+    const getAllUserChoicesData = () => {
+
+    }
+
     return (
         <>
             <BrowserRouter>
