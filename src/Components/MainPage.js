@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getMovies } from "../API";
 import Loading from "./Loading";
+import { Link } from "react-router-dom";
 
 export default function MainPage () {
 
@@ -31,9 +32,11 @@ export default function MainPage () {
             </div>
             <div className="movies-container">
                 <ul className="movies-list">
-                    {movies.map(({posterURL : url}, i) => 
+                    {movies.map(({posterURL, id}, i) => 
                         <li className="movie" key={i}>
-                            <img src={url} alt=""/>
+                            <Link to={`/sessions/${id}`}>
+                                <img src={posterURL} alt=""/>
+                            </Link>
                         </li>
                     )}
                 </ul>

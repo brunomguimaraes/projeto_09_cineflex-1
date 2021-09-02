@@ -18,7 +18,6 @@ import NavBar from "./Components/NavBar";
 import MainPage from "./Components/MainPage";
 import MovieSessions from "./Components/MovieSessions";
 import SessionSeats from "./Components/SessionSeats";
-import BottomBar from "./Components/BottomBar";
 import RequestReview from "./Components/RequestReview";
 
 export default function App () {
@@ -33,14 +32,12 @@ export default function App () {
                         <MainPage />
                     </Route>
                     
-                    <Route exact path="/sessions">
+                    <Route exact path="/sessions/:movieId">
                         <MovieSessions />
-                        <BottomBar/>
                     </Route>
 
                     <Route exact path="/seats">
                         <SessionSeats />
-                        <BottomBar/>
                     </Route>
 
                     <Route exact path="/sucess">

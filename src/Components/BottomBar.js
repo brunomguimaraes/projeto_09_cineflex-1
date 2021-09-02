@@ -1,17 +1,17 @@
-export default function BottomBar () {
+export default function BottomBar ({movieName, movieURL}) {
     return (
         <div className="bottom-bar">
             <div className="movie-content-container">
                 <div className="movie-img">
-                    as
+                    <img src={movieURL} alt=""/>
                 </div>
                 <div className="info-box">
                     <span className="movie-name">
-                        Enola Holmes
+                        {movieName}
                     </span>
-                    <span className="date-and-time">
+                    {/* <span className="date-and-time">
                         Quinta-feira 15:00
-                    </span>
+                    </span> */}
                 </div>
             </div>
         </div>
