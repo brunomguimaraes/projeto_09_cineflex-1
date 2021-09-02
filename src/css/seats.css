@@ -13,7 +13,6 @@
 }
 
 .seat {
-    background-color: #C3CFD9;
     border-radius: 33px;
     border: 1px solid #808F9D;
     width: 26px;
@@ -47,15 +46,15 @@
     border: 1px solid #808F9D;
 }
 
-.green .circle {
+.green {
     background-color: #8DD7CF;
 }
 
-.gray .circle {
+.gray {
     background-color: #C3CFD9;
 }
 
-.yellow .circle {
+.yellow {
     background-color: #FBE192;
 }
 

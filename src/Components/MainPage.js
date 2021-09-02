@@ -11,7 +11,6 @@ export default function MainPage () {
         getMovies()
         .then(response => {
             setMovies(response.data);
-            console.log(response);
         }).catch(error => {
             alert("Deu ruim aqui");
         })

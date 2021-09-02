@@ -1,4 +1,4 @@
-export default function BottomBar ({movieName, movieURL}) {
+export default function BottomBar ({movieName, movieURL, date, time}) {
     return (
         <div className="bottom-bar">
             <div className="movie-content-container">
@@ -9,9 +9,11 @@ export default function BottomBar ({movieName, movieURL}) {
                     <span className="movie-name">
                         {movieName}
                     </span>
-                    {/* <span className="date-and-time">
-                        Quinta-feira 15:00
-                    </span> */}
+                    {date !== undefined && time !== undefined ? (
+                        <span className="date-and-time">
+                            {`${date} - ${time}`}
+                        </span> 
+                    ) : (<></>)}
                 </div>
             </div>
         </div>

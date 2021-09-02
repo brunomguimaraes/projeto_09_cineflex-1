@@ -1,12 +1,30 @@
+import { getSessionSeats } from "../API";
+import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import Loading from "./Loading";
+import BottomBar from "./BottomBar";
+
 export default function SessionSeats () {
-    
-    const seats = []
-    for (let i = 1; i <= 50; i++) {
-        if (i >= 1 && i <= 9) {
-            seats.push("0" + `${i}`) 
-            continue;
-        }
-        seats.push(`${i}`);
+
+    const { sessionId } = useParams();
+    const [selectedSession, setSelectedSession] = useState(null);
+
+    useEffect(() => {
+
+        getSessionSeats(sessionId)
+        .then(response => {
+            setSelectedSession(response.data);
+            console.log(response.data);
+        }).catch(error => {
+            alert("Deu ruim aqui também novamente");
+        })
+
+    }, [])
+
+    if (selectedSession === null) {
+        return (
+            <Loading />
+        )
     }
 
     return (
@@ -18,28 +36,33 @@ export default function SessionSeats () {
             </div>
             <div className="seats-page-container">
                 <ul className="seats">
-                    {seats.map(seat => 
-                        <li className="seat">
-                            {seat}
-                        </li>)}
+                    {selectedSession.seats.map(({id, name: number, isAvailable}, i) => 
+                        <li className={`seat ${isAvailable === false ? ("gray") : ("yellow")}`} key={i}>
+                            {number >= 1 && number <= 9 ? (
+                                "0" + number
+                            ) : (
+                                number
+                            )}
+                        </li>
+                    )}
                 </ul>
                 <div className="legend-box">
-                    <div className="description green">
-                        <div className="circle">
+                    <div className="description">
+                        <div className="circle green">
                         </div>
                         <span>
                             Selecionado
                         </span>
                     </div>
-                    <div className="description gray">
-                        <div className="circle">
+                    <div className="description">
+                        <div className="circle gray">
                         </div>
                         <span>
                             Disponível
                         </span>
                     </div>
-                    <div className="description yellow">
-                        <div className="circle">
+                    <div className="description">
+                        <div className="circle yellow">
                         </div>
                         <span>
                             Indisponível
@@ -60,10 +83,11 @@ export default function SessionSeats () {
                         <input placeholder="Digite seu CPF..."></input>
                     </div>
                 </div>
-                <a class="finish-button" href="sdfas">
+                <a className="finish-button" href="sdfas">
                     Reservar assento    
                 </a>
             </div>
+            <BottomBar movieName={selectedSession.movie.title} movieURL={selectedSession.movie.posterURL} date={selectedSession.day.weekday} time={selectedSession.name}/>
         </div>
     )
 }

@@ -36,7 +36,7 @@ export default function App () {
                         <MovieSessions />
                     </Route>
 
-                    <Route exact path="/seats">
+                    <Route exact path="/seats/:sessionId">
                         <SessionSeats />
                     </Route>
 

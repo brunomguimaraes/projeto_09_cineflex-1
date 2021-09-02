@@ -1,6 +1,6 @@
 import { getMoviesById } from "../API";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Loading from "./Loading";
 import BottomBar from "./BottomBar";
 
@@ -14,7 +14,6 @@ export default function MovieSessions () {
         getMoviesById(movieId)
         .then(response => {
             setSelectedMovie(response.data);
-            console.log(response.data);
         }).catch(error => {
             alert("Deu ruim aqui também");
         })
@@ -42,9 +41,11 @@ export default function MovieSessions () {
                                 {`${weekday} - ${date}`}
                             </span>
                             <ul className="session-time-options">
-                                {showtimes.map(({name: time}, j) =>
+                                {showtimes.map(({name: time, id}, j) =>
                                     <li className="time-option" key={j}>
-                                        {time}
+                                        <Link to={`/seats/${id}`} className="time-link">
+                                            {time}
+                                        </Link>
                                     </li>
                                 )}
                             </ul>
