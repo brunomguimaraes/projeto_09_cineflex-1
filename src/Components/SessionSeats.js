@@ -27,6 +27,20 @@ export default function SessionSeats () {
         )
     }
 
+    const selectSeat = (id) => {
+        const newSession = {...selectedSession};
+
+        if (newSession.seats[id - 1].clicked === true) {
+            delete newSession.seats[id - 1].clicked;
+            setSelectedSession(newSession);
+            return;
+        }
+
+        newSession.seats[id - 1].clicked = true;
+        setSelectedSession(newSession);
+    }
+
+    
     return (
         <div className="page-container">
             <div className="title-box">
@@ -36,8 +50,8 @@ export default function SessionSeats () {
             </div>
             <div className="seats-page-container">
                 <ul className="seats">
-                    {selectedSession.seats.map(({id, name: number, isAvailable}, i) => 
-                        <li className={`seat ${isAvailable === false ? ("gray") : ("yellow")}`} key={i}>
+                    {selectedSession.seats.map(({id, name: number, isAvailable, clicked}, i) => 
+                        <li onClick={() => selectSeat(id)} className={`seat ${clicked === undefined ? (isAvailable === false ? ("gray") : ("yellow")) : ("green")}`} key={i}>
                             {number >= 1 && number <= 9 ? (
                                 "0" + number
                             ) : (
