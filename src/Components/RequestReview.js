@@ -1,4 +1,7 @@
-export default function RequestReview () {
+export default function RequestReview ({ movieAndDateAndUserInfo }) {
+
+    console.log(movieAndDateAndUserInfo);
+
     return (
         <div className="page-container">
             <div className="title-box green-title-color ">
@@ -12,32 +15,31 @@ export default function RequestReview () {
                         Filme e sessão
                     </h2>
                     <span>
-                        Enola Holmes
+                        {movieAndDateAndUserInfo.movieAndSession.title}
                     </span>
                     <span>
-                        24/06/2021 15:00
+                        {`${movieAndDateAndUserInfo.movieAndSession.date} ${movieAndDateAndUserInfo.movieAndSession.time}`}
                     </span>
                 </div>
                 <div className="request-info-box">
                     <h2>
                         Ingressos
                     </h2>
-                    <span>
-                        Assento 15
-                    </span>
-                    <span>
-                        Assento 16
-                    </span>
+                    {movieAndDateAndUserInfo.tickets[0].map(ticket => 
+                        <span>
+                            Assento {ticket.name}
+                        </span>
+                    )}
                 </div>
                 <div className="request-info-box">
                     <h2>
                         Comprador
                     </h2>
                     <span>
-                        Nome: Maricreudo da Silvete Jambarguês
+                        Nome: {movieAndDateAndUserInfo.buyer.buyerName}
                     </span>
                     <span>
-                        CPF: 123.456.789-10
+                        CPF: {movieAndDateAndUserInfo.buyer.buyerCPF}
                     </span>
                 </div>
             </div>

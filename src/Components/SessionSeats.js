@@ -4,7 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import Loading from "./Loading";
 import BottomBar from "./BottomBar";
 
-export default function SessionSeats () {
+export default function SessionSeats ({ getAllUserChoicesDataToSend }) {
 
     const [nameInput, setNameInput] = useState("");
     const [CPFInput, setCPFInput] = useState("");
@@ -44,6 +44,7 @@ export default function SessionSeats () {
         if (newSession.seats[i].clicked === true) {
             delete newSession.seats[i].clicked;
             setSelectedSession(newSession);
+            console.log(selectedSession);
 
             const newIdsArray = [...selectedSeatsIds].filter((IdValue) => IdValue !== id);
             setSelectedSeatsIds(newIdsArray);            
@@ -52,16 +53,37 @@ export default function SessionSeats () {
 
         newSession.seats[i].clicked = true;
         setSelectedSession(newSession);
+        console.log(selectedSession);
         setSelectedSeatsIds([...selectedSeatsIds, id]);
     }
 
     const reserveSeats = () => {
+
+        generateObjectWithUserChoicesAndSendToReviewPage();
+
         postRequest({
             ids: selectedSeatsIds,
             name: nameInput,
             cpf: CPFInput
-        }).then(response => console.log(response.status))
+        }).then(sucess => console.log(sucess))
         .catch(error => console.log(error.status))
+    }
+
+    const generateObjectWithUserChoicesAndSendToReviewPage = () => {
+        const userData = {
+            movieAndSession: {
+                title: selectedSession.movie.title,
+                date: selectedSession.day.date,
+                time: selectedSession.name
+            },
+            tickets: [selectedSession.seats.filter(seat => seat.clicked === true)],
+            buyer: {
+                buyerName: nameInput,
+                buyerCPF: CPFInput
+            }
+        }
+        console.log(userData);
+        getAllUserChoicesDataToSend(userData);
     }
 
     return (
@@ -111,13 +133,13 @@ export default function SessionSeats () {
                         <span className="input-explanation">
                             Nome do comprador:
                         </span>
-                        <input placeholder="Digite seu nome..." onChange={event => setNameInput(event.target.value)}></input>
+                        <input placeholder="Digite seu nome..." onChange={e => setNameInput(e.target.value)} value={nameInput}></input>
                     </div>
                     <div className="input-box">
                         <span className="input-explanation">
                             CPF do comprador:
                         </span>
-                        <input placeholder="Digite seu CPF..." onChange={event => setCPFInput(event.target.value)}></input>
+                        <input placeholder="Digite seu CPF..." onChange={e => setCPFInput(e.target.value)} value={CPFInput}></input>
                     </div>
                 </div>
                 <Link onClick={reserveSeats} to="/sucess" className="finish-button">
