@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
 
 export default function RequestReview ({ movieAndDateAndUserInfo }) {
-
-    console.log(movieAndDateAndUserInfo);
-
     return (
         <div className="page-container">
             <div className="title-box green-title-color ">
