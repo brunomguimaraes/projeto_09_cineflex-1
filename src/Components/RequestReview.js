@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "../css/review.css";
 
 export default function RequestReview ({ movieAndDateAndUserInfo }) {
     return (

@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import Loading from "./Loading";
 import BottomBar from "./BottomBar";
 import GoBackButton from "./GoBackButton";
+import "../css/sessions.css";
 
 export default function MovieSessions () {
 

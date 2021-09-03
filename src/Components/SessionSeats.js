@@ -5,6 +5,7 @@ import Loading from "./Loading";
 import BottomBar from "./BottomBar";
 import { IoIosTrash } from "react-icons/io";
 import GoBackButton from "./GoBackButton";
+import "../css/seats.css";
 
 export default function SessionSeats ({ getAllUserChoicesDataToSend }) {
 
@@ -20,7 +21,6 @@ export default function SessionSeats ({ getAllUserChoicesDataToSend }) {
         getSessionSeats(sessionId)
         .then(response => {
             setSelectedSession(response.data);
-            console.log(response.data);
         }).catch(error => {
             alert("Deu ruim aqui também novamente");
         })

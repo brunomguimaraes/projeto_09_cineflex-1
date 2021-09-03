@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getMovies } from "../API";
 import Loading from "./Loading";
 import { Link } from "react-router-dom";
+import "../css/mainpage.css";
 
 export default function MainPage () {
 

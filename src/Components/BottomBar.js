@@ -1,3 +1,5 @@
+import "../css/bottombar.css";
+
 export default function BottomBar ({movieName, movieURL, date, time}) {
     return (
         <div className="bottom-bar">

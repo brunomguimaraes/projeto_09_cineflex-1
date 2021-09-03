@@ -1,14 +1,7 @@
 import React from "react";
 import "./css/reset.css";
-import "./css/mainpage.css";
-import "./css/review.css";
-import "./css/seats.css";
-import "./css/sessions.css";
-import "./css/bottombar.css";
 import "./css/navbar.css";
 import "./css/style.css";
-import "./css/loading.css";
-import "./css/goback.css";
 import {
     BrowserRouter,
     Route,

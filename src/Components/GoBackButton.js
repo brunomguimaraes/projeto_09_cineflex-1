@@ -1,5 +1,6 @@
 import { useHistory } from "react-router";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import "../css/goback.css";
 
 export default function GoBackButton () {
 
