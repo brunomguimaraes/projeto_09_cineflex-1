@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Loading from "./Loading";
 import BottomBar from "./BottomBar";
+import { IoIosTrash } from "react-icons/io";
 
 export default function SessionSeats ({ getAllUserChoicesDataToSend }) {
 
@@ -10,8 +11,6 @@ export default function SessionSeats ({ getAllUserChoicesDataToSend }) {
     const [CPFInput, setCPFInput] = useState("");
 
     const [selectedSeatsIds, setSelectedSeatsIds] = useState([]);
-
-    console.log(selectedSeatsIds);
 
     const { sessionId } = useParams();
     const [selectedSession, setSelectedSession] = useState(null);
@@ -53,7 +52,6 @@ export default function SessionSeats ({ getAllUserChoicesDataToSend }) {
 
         newSession.seats[i].clicked = true;
         setSelectedSession(newSession);
-        console.log(selectedSession);
         setSelectedSeatsIds([...selectedSeatsIds, id]);
     }
 
@@ -84,6 +82,20 @@ export default function SessionSeats ({ getAllUserChoicesDataToSend }) {
         }
         console.log(userData);
         getAllUserChoicesDataToSend(userData);
+    }
+
+    const reset = () => {
+        setNameInput("");
+        setCPFInput("");
+
+        const resetedSessionArray = {...selectedSession};
+        resetedSessionArray.seats.forEach(element => {
+            if (element.clicked === true) {
+                delete element.clicked;
+            }
+        });
+        setSelectedSession(resetedSessionArray);
+        setSelectedSeatsIds([]);
     }
 
     return (
@@ -142,9 +154,12 @@ export default function SessionSeats ({ getAllUserChoicesDataToSend }) {
                         <input placeholder="Digite seu CPF..." onChange={e => setCPFInput(e.target.value)} value={CPFInput}></input>
                     </div>
                 </div>
-                <Link onClick={reserveSeats} to="/sucess" className="finish-button">
-                    Reservar assento    
-                </Link>
+                <div className="buttons">
+                    <button onClick={reset} className="reset-button"><IoIosTrash /></button>
+                    <Link onClick={reserveSeats} to="/sucess" className={`finish-button ${(selectedSeatsIds.length > 0 && nameInput !== "" && CPFInput !== "") ? ("") : ("disabled-link")}`}>
+                        Reservar assento    
+                    </Link>
+                </div>
             </div>
             <BottomBar movieName={selectedSession.movie.title} movieURL={selectedSession.movie.posterURL} date={selectedSession.day.weekday} time={selectedSession.name}/>
         </div>

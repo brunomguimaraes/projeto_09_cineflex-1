@@ -28,8 +28,8 @@ export default function RequestReview ({ movieAndDateAndUserInfo }) {
                         <h2>
                             Ingressos
                         </h2>
-                        {movieAndDateAndUserInfo.tickets[0].map(ticket => 
-                            <span>
+                        {movieAndDateAndUserInfo.tickets[0].map((ticket, i) => 
+                            <span key={i}>
                                 Assento {ticket.name}
                             </span>
                         )}
