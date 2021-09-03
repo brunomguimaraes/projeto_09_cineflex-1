@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import Loading from "./Loading";
 import BottomBar from "./BottomBar";
 import { IoIosTrash } from "react-icons/io";
+import GoBackButton from "./GoBackButton";
 
 export default function SessionSeats ({ getAllUserChoicesDataToSend }) {
 
@@ -100,6 +101,7 @@ export default function SessionSeats ({ getAllUserChoicesDataToSend }) {
 
     return (
         <div className="page-container">
+            <GoBackButton />
             <div className="title-box">
                 <h1>
                     Selecione o(s) assento(s)

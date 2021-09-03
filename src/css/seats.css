@@ -104,10 +104,6 @@
     text-decoration: none;
 }
 
-.disabled-link {
-    pointer-events: none;
-}
-
 .buttons {
     display: flex;
     margin-top: 30px;
@@ -125,4 +121,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.disabled-link {
+    pointer-events: none;
 }

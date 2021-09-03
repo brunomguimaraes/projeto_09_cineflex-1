@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Loading from "./Loading";
 import BottomBar from "./BottomBar";
+import GoBackButton from "./GoBackButton";
 
 export default function MovieSessions () {
 
@@ -28,6 +29,7 @@ export default function MovieSessions () {
 
     return (
         <div className="page-container">
+            <GoBackButton />
             <div className="title-box">
                 <h1>
                     Selecione o horário

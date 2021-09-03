@@ -8,6 +8,7 @@ import "./css/bottombar.css";
 import "./css/navbar.css";
 import "./css/style.css";
 import "./css/loading.css";
+import "./css/goback.css";
 import {
     BrowserRouter,
     Route,
@@ -26,7 +27,6 @@ export default function App () {
     const getAllUserChoicesDataToSend = (choices) => {
         SetAllUserData(choices);
     }
-    console.log(allUserData);
 
     return (
         <>
