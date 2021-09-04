@@ -1,3 +1,5 @@
+import "../css/navbar.css";
+
 export default function NavBar () {
     return (
         <header className="navbar">

@@ -13,7 +13,7 @@ export default function MainPage () {
         .then(response => {
             setMovies(response.data);
         }).catch(error => {
-            alert("Deu ruim aqui");
+            alert("Não foi possível fazer contato com o servidor!");
         })
     }, [])
 

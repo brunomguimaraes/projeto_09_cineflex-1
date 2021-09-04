@@ -8,7 +8,6 @@ export default function GoBackButton () {
     const goBack = () => {
         history.goBack();
     }
-
     return (
         <button className="go-back-button" onClick={goBack}><IoMdArrowRoundBack /></button>
     )

@@ -1,6 +1,5 @@
 import React from "react";
 import "./css/reset.css";
-import "./css/navbar.css";
 import "./css/style.css";
 import {
     BrowserRouter,

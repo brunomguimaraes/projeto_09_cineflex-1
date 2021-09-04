@@ -17,7 +17,7 @@ export default function MovieSessions () {
         .then(response => {
             setSelectedMovie(response.data);
         }).catch(error => {
-            alert("Deu ruim aqui também");
+            alert("Não foi possível fazer contato com o servidor!");
         })
 
     }, [])

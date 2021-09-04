@@ -11,18 +11,16 @@ export default function SessionSeats ({ getAllUserChoicesDataToSend }) {
 
     const [nameInput, setNameInput] = useState("");
     const [CPFInput, setCPFInput] = useState("");
-
     const [selectedSeatsIds, setSelectedSeatsIds] = useState([]);
-
-    const { sessionId } = useParams();
     const [selectedSession, setSelectedSession] = useState(null);
+    const { sessionId } = useParams();
 
     useEffect(() => {
         getSessionSeats(sessionId)
         .then(response => {
             setSelectedSession(response.data);
         }).catch(error => {
-            alert("Deu ruim aqui também novamente");
+            alert("Não foi possível fazer contato com o servidor!");
         })
     }, [])
 
@@ -33,18 +31,15 @@ export default function SessionSeats ({ getAllUserChoicesDataToSend }) {
     }
 
     const selectSeat = (i, isAvailable, id) => {
-
         if (isAvailable === false) {
             alert("Este assento não está disponível!");
             return;
         }
 
         const newSession = {...selectedSession};
-
         if (newSession.seats[i].clicked === true) {
             delete newSession.seats[i].clicked;
             setSelectedSession(newSession);
-            console.log(selectedSession);
 
             const newIdsArray = [...selectedSeatsIds].filter((IdValue) => IdValue !== id);
             setSelectedSeatsIds(newIdsArray);            
@@ -54,18 +49,6 @@ export default function SessionSeats ({ getAllUserChoicesDataToSend }) {
         newSession.seats[i].clicked = true;
         setSelectedSession(newSession);
         setSelectedSeatsIds([...selectedSeatsIds, id]);
-    }
-
-    const reserveSeats = () => {
-
-        generateObjectWithUserChoicesAndSendToReviewPage();
-
-        postRequest({
-            ids: selectedSeatsIds,
-            name: nameInput,
-            cpf: CPFInput
-        }).then(sucess => console.log(sucess))
-        .catch(error => console.log(error.status))
     }
 
     const generateObjectWithUserChoicesAndSendToReviewPage = () => {
@@ -81,14 +64,24 @@ export default function SessionSeats ({ getAllUserChoicesDataToSend }) {
                 buyerCPF: CPFInput
             }
         }
-        console.log(userData);
         getAllUserChoicesDataToSend(userData);
+    }
+
+    const reserveSeats = () => {
+        generateObjectWithUserChoicesAndSendToReviewPage();
+        postRequest({
+            ids: selectedSeatsIds,
+            name: nameInput,
+            cpf: CPFInput
+        }).then(sucess => console.log(sucess.status))
+        .catch(error => {
+            alert("Não foi possível fazer contato com o servidor e seu pedido não foi concluído! Por favor, tente novamente.")
+        })
     }
 
     const reset = () => {
         setNameInput("");
         setCPFInput("");
-
         const resetedSessionArray = {...selectedSession};
         resetedSessionArray.seats.forEach(element => {
             if (element.clicked === true) {
