@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getMovies } from "../API";
 import Loading from "./Loading";
 import { Link } from "react-router-dom";
-import "../css/mainpage.css";
+import styled from 'styled-components';
 
 export default function MainPage () {
 
@@ -30,17 +30,40 @@ export default function MainPage () {
                     Selecione o filme
                 </h1>
             </div>
-            <div className="movies-container">
-                <ul className="movies-list">
+            <MoviesContainer>
+                <MoviesList>
                     {movies.map(({posterURL, id}, i) => 
-                        <li className="movie" key={i}>
+                        <Movie key={i}>
                             <Link to={`/sessions/${id}`}>
                                 <img src={posterURL} alt=""/>
                             </Link>
-                        </li>
+                        </Movie>
                     )}
-                </ul>
-            </div>
+                </MoviesList>
+            </MoviesContainer>
         </div>
     )
 }
+
+const MoviesContainer = styled.div`
+    display: flex;
+    justify-content: center;
+`
+const MoviesList = styled.ul`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    gap: 25px;
+    width: 315px;
+`
+const Movie = styled.li`
+    height: 209px;
+    width: 145px;
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 8px;
+
+    img {
+        height: 100%;
+    }
+`

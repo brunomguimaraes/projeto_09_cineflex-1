@@ -4,7 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import Loading from "./Loading";
 import BottomBar from "./BottomBar";
 import GoBackButton from "./GoBackButton";
-import "../css/sessions.css";
+import styled from 'styled-components';
 
 export default function MovieSessions () {
 
@@ -36,27 +36,67 @@ export default function MovieSessions () {
                     Selecione o horário
                 </h1>
             </div>
-            <div className="sessions-container">
-                <ul className="sessions-list">
+            <SessionsContainer>
+                <SessionsList>
                     {selectedMovie.days.map(({weekday, date, showtimes}, i) => 
                         <li className="session" key={i}>
-                            <span className="session-date">
+                            <SessionDate>
                                 {`${weekday} - ${date}`}
-                            </span>
-                            <ul className="session-time-options">
+                            </SessionDate>
+                            <SessionTimeOptions>
                                 {showtimes.map(({name: time, id}, j) =>
-                                    <li className="time-option" key={j}>
+                                    <TimeOption key={j}>
                                         <Link to={`/seats/${id}`} className="time-link">
                                             {time}
                                         </Link>
-                                    </li>
+                                    </TimeOption>
                                 )}
-                            </ul>
+                            </SessionTimeOptions>
                         </li>
                     )}
-                </ul>
-            </div>
+                </SessionsList>
+            </SessionsContainer>
             <BottomBar movieName={selectedMovie.title} movieURL={selectedMovie.posterURL}/>
         </div>
     )
 }
+
+const SessionsContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    padding: 0 23px;
+    margin-bottom: 150px;
+`
+const SessionsList = styled.ul`
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+    width: 100%;
+    min-width: 329px;
+`
+const SessionDate = styled.span`
+    font-size: 20px;
+    line-height: 24px;
+`
+const SessionTimeOptions = styled.ul`
+    margin-top: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+`
+const TimeOption = styled.li`
+    width: 83px;
+    height: 43px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #E8833A;
+    border-radius: 3px;
+    color: #ffffff;
+
+    .time-link {
+        text-decoration: none;
+        color: black;
+    }
+`
