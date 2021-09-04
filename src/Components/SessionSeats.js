@@ -14,6 +14,7 @@ export default function SessionSeats ({ getAllUserChoicesDataToSend }) {
     const [selectedSeatsIds, setSelectedSeatsIds] = useState([]);
     const [selectedSession, setSelectedSession] = useState(null);
     const { sessionId } = useParams();
+    let isCPFValid;
 
     useEffect(() => {
         getSessionSeats(sessionId)
@@ -67,7 +68,24 @@ export default function SessionSeats ({ getAllUserChoicesDataToSend }) {
         getAllUserChoicesDataToSend(userData);
     }
 
-    const reserveSeats = () => {
+    const validateCPF = (event) => {
+        if (CPFInput.length !== 11 || !Number(CPFInput)) {
+            isCPFValid = false;
+            alert("CPF inválido!");
+            event.preventDefault();
+            event.stopPropagation();
+        } else {
+            isCPFValid = true;
+        }
+        return isCPFValid;
+    }
+
+    const reserveSeats = (event) => {
+        validateCPF(event);
+        if (!isCPFValid) {
+            return;
+        }
+
         generateObjectWithUserChoicesAndSendToReviewPage();
         postRequest({
             ids: selectedSeatsIds,
@@ -140,18 +158,18 @@ export default function SessionSeats ({ getAllUserChoicesDataToSend }) {
                         <span className="input-explanation">
                             Nome do comprador:
                         </span>
-                        <input placeholder="Digite seu nome..." onChange={e => setNameInput(e.target.value)} value={nameInput}></input>
+                        <input placeholder="Digite seu nome..." onChange={event => setNameInput(event.target.value)} value={nameInput}></input>
                     </div>
                     <div className="input-box">
                         <span className="input-explanation">
                             CPF do comprador:
                         </span>
-                        <input placeholder="Digite seu CPF..." onChange={e => setCPFInput(e.target.value)} value={CPFInput}></input>
+                        <input placeholder="Digite seu CPF..." onChange={event => setCPFInput(event.target.value)} value={CPFInput}></input>
                     </div>
                 </div>
                 <div className="buttons">
                     <button onClick={reset} className="reset-button"><IoIosTrash /></button>
-                    <Link onClick={reserveSeats} to="/sucess" className={`finish-button ${(selectedSeatsIds.length > 0 && nameInput !== "" && CPFInput !== "") ? ("") : ("disabled-link")}`}>
+                    <Link onClick={event => reserveSeats(event)} to="/sucess" className={`finish-button ${(selectedSeatsIds.length > 0 && nameInput !== "" && CPFInput !== "") ? ("") : ("disabled-link")}`}>
                         Reservar assento    
                     </Link>
                 </div>
