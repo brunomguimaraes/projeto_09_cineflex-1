@@ -23,7 +23,7 @@ export default function App () {
     return (
         <>
             <BrowserRouter>
-                <NavBar />
+                <NavBar/>
                 <Switch>
                     <Route exact path="/">
                         <MainPage />
