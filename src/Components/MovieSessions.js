@@ -88,9 +88,6 @@ const TimeOption = styled.li`
     width: 83px;
     height: 43px;
     font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: #E8833A;
     border-radius: 3px;
     color: #ffffff;
@@ -98,5 +95,10 @@ const TimeOption = styled.li`
     .time-link {
         text-decoration: none;
         color: black;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 `
