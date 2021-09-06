@@ -3,15 +3,12 @@
 * {
     box-sizing: border-box;
 }
-
 #root {
     font-family: 'Roboto', sans-serif;
 }
-
 .page-container {
     background-color: #ffffff;    
 }
-
 .title-box h1 {
     height: 100px;
     background-color: #ffffff;

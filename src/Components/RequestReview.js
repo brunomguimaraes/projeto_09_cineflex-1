@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../css/review.css";
+import styled from 'styled-components';
 
 export default function RequestReview ({ movieAndDateAndUserInfo }) {
     return (
@@ -9,9 +9,9 @@ export default function RequestReview ({ movieAndDateAndUserInfo }) {
                     Pedido feito com sucesso!
                 </h1>
             </div>
-            <div className="review-page">
-                <div className="choice-review-container">
-                    <div className="request-info-box">
+            <ReviewPage>
+                <ChoiceReviewContainer>
+                    <RequestInfoBox>
                         <h2>
                             Filme e sessão
                         </h2>
@@ -21,8 +21,8 @@ export default function RequestReview ({ movieAndDateAndUserInfo }) {
                         <span>
                             {`${movieAndDateAndUserInfo.movieAndSession.date} ${movieAndDateAndUserInfo.movieAndSession.time}`}
                         </span>
-                    </div>
-                    <div className="request-info-box">
+                    </RequestInfoBox>
+                    <RequestInfoBox>
                         <h2>
                             Ingressos
                         </h2>
@@ -31,8 +31,8 @@ export default function RequestReview ({ movieAndDateAndUserInfo }) {
                                 Assento {ticket.name}
                             </span>
                         )}
-                    </div>
-                    <div className="request-info-box">
+                    </RequestInfoBox>
+                    <RequestInfoBox>
                         <h2>
                             Comprador
                         </h2>
@@ -42,12 +42,59 @@ export default function RequestReview ({ movieAndDateAndUserInfo }) {
                         <span>
                             CPF: {movieAndDateAndUserInfo.buyer.buyerCPF}
                         </span>
-                    </div>
-                </div>
+                    </RequestInfoBox>
+                </ChoiceReviewContainer>
                 <Link className="home-button" to="/">
                     Voltar para Home
                 </Link>
-            </div>
+            </ReviewPage>
         </div>
     )
 }
+
+const ReviewPage = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .green-title-color {
+        color: #247A6B;
+        font-weight: bold;
+    }
+    .home-button {
+        width: 225px;
+        height: 42px;
+        background-color: #E8833A;
+        border-radius: 3px;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 50px;
+        text-decoration: none;
+        margin-bottom: 70px;
+    }
+`
+const ChoiceReviewContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 23px;
+    gap: 35px;
+`
+const RequestInfoBox = styled.div`
+    color: #293845;
+    display: flex;
+    flex-direction: column;
+    width: 332px;
+
+    h2 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 11px;
+    }
+    span {
+        font-size: 22px;
+        line-height: 27px;
+    }
+`
